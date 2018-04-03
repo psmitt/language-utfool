@@ -1,0 +1,207 @@
+scopeName: 'source.utfool'
+name: 'UTFool'
+fileTypes: ['utf8']
+patterns: [
+  {
+    begin: '···'
+    beginCaptures:
+      0:
+        name: 'comment.block.begin.utfool'
+    end: '···'
+    endCaptures:
+      0:
+        name: 'comment.block.end.utfool'
+    contentName: 'comment.block.utfool'
+  }
+  {
+    begin: '·|͞|⃫|⍝'
+    beginCaptures:
+      0:
+        name: 'comment.line.begin.utfool'
+    end: '\\n'
+    endCaptures:
+      0:
+        name: 'comment.line.end.utfool'
+    contentName: 'comment.line.utfool'
+  }
+  {
+    begin: '\\s*͘'
+    beginCaptures:
+      0:
+        name: 'comment.block.begin.utfool'
+    end: '\\s'
+    endCaptures:
+      0:
+        name: 'comment.block.end.utfool'
+    contentName: 'comment.block.utfool'
+  }
+  {
+    match: '\\b(be|each|let|the|them)\\b'
+    name: 'comment.block.utfool'
+  }
+  {
+    match: '\\\\[btnfru"]'
+    name: 'constant.character.escape.utfool'
+  }
+  {
+    match: "\\\\'"
+    name: 'constant.character.escape.utfool'
+  }
+  {
+    begin: "'"
+    beginCaptures:
+      0:
+        name: 'constant.character.begin.utfool'
+    end: "(?<!\\\\)'"
+    endCaptures:
+      0:
+        name: 'constant.character.end.utfool'
+    contentName: 'constant.character.utfool'
+  }
+  {
+    begin: "‘"
+    beginCaptures:
+      0:
+        name: 'constant.character.begin.utfool'
+    end: "’"
+    endCaptures:
+      0:
+        name: 'constant.character.end.utfool'
+    contentName: 'constant.character.utfool'
+  }
+  {
+    begin: "‵"
+    beginCaptures:
+      0:
+        name: 'constant.character.begin.utfool'
+    end: "′"
+    endCaptures:
+      0:
+        name: 'constant.character.end.utfool'
+    contentName: 'constant.character.utfool'
+  }
+  {
+    begin: '"'
+    beginCaptures:
+      0:
+        name: 'string.quoted.begin.utfool'
+    end: '(?<!\\\\)"'
+    endCaptures:
+      0:
+        name: 'string.quoted.end.utfool'
+    contentName: 'string.quoted.utfool'
+    patterns: [
+      {
+        include: '#interpolation'
+      }
+    ]
+  }
+  {
+    begin: '“'
+    beginCaptures:
+      0:
+        name: 'string.quoted.begin.utfool'
+    end: '”'
+    endCaptures:
+      0:
+        name: 'string.quoted.end.utfool'
+    contentName: 'string.quoted.utfool'
+    patterns: [
+      {
+        include: '#interpolation'
+      }
+    ]
+  }
+  {
+    begin: '‶'
+    beginCaptures:
+      0:
+        name: 'string.quoted.begin.utfool'
+    end: '″'
+    endCaptures:
+      0:
+        name: 'string.quoted.end.utfool'
+    contentName: 'string.quoted.utfool'
+    patterns: [
+      {
+        include: '#interpolation'
+      }
+    ]
+  }
+  {
+    begin: '‷'
+    beginCaptures:
+      0:
+        name: 'string.quoted.begin.utfool'
+    end: '‴'
+    endCaptures:
+      0:
+        name: 'string.quoted.end.utfool'
+    contentName: 'string.quoted.utfool'
+    patterns: [
+      {
+        include: '#interpolation'
+      }
+    ]
+  }
+  {
+    match: '⟨'
+    name: 'entity.name.type.begin.utfool'
+  }
+  {
+    match: '⟩'
+    name: 'entity.name.type.end.utfool'
+  }
+  {
+    match: '\\('
+    name: 'punctuation.bracket.round.begin.utfool'
+  }
+  {
+    match: '\\)'
+    name: 'punctuation.bracket.round.end.utfool'
+  }
+  {
+    match: '\\['
+    name: 'punctuation.bracket.square.begin.utfool'
+  }
+  {
+    match: '\\]'
+    name: 'punctuation.bracket.square.end.utfool'
+  }
+  {
+    match: '\\b(break|by|catch|new|continue|else|fallthrough|finally)\\b'
+    name: 'keyword.utfool'
+  }
+  {
+    match: '\\b(if|import|in|from|for|label|of|package|return)\\b'
+    name: 'keyword.utfool'
+  }
+  {
+    match: '\\b(section|then|throw|to|try|unless|until|while)\\b'
+    name: 'keyword.utfool'
+  }
+  {
+    match: '¤|⦂|:|#|■|≣|…|⋯|!!|‼|▶|\\?\\?|⁇|⬩|⎆|∈|□|🔁|∀|🏷|📦'
+    name: 'keyword.utfool'
+  }
+  {
+    match: '⚫|⏺|⏎|§|∢|⭆|🌠|﹗|﹖|↵'
+    name: 'keyword.utfool'
+  }
+  {
+    match: '\\b(is|are)\\b'
+    name: 'entity.other.utfool'
+  }
+]
+repository:
+  interpolation:
+    patterns: [
+      {
+        match: '⸨'
+        name: 'entity.other.attribute-name'
+      }
+      {
+        match: '⸩'
+        name: 'entity.other.attribute-name'
+      }
+    ]
