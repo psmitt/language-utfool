@@ -246,7 +246,7 @@ patterns: [
   # Aliases in aliases.tsv
   {
     match: '\\b(to|up to|up through|down to|down through)\\b'
-    name: 'keyword.other.alias.utfool'
+    name: 'keyword.other.utfool'
   }
   {
     match: '∅|∞|@|⨭|≈|≊|≅|∃|∄|⊨|⊭|√'
