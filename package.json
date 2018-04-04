@@ -1,9 +1,13 @@
 {
   "name": "language-utfool",
   "main": "./lib/language-utfool",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Syntax highlighting for UTFool language",
-  "keywords": [ "UTFool", "UTF8", "UTF-8", "UTF"
+  "keywords": [
+    "UTFool",
+    "UTF8",
+    "UTF-8",
+    "UTF"
   ],
   "activationCommands": {
     "atom-workspace": "language-utfool:toggle"
@@ -13,6 +17,5 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
