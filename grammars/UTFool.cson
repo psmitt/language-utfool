@@ -2,6 +2,8 @@ scopeName: 'source.utfool'
 name: 'UTFool'
 fileTypes: ['utf8']
 patterns: [
+  # Delimited Sequences:
+  # BlockComment
   {
     begin: '···'
     beginCaptures:
@@ -13,6 +15,7 @@ patterns: [
         name: 'comment.block.end.utfool'
     contentName: 'comment.block.utfool'
   }
+  # LineComment
   {
     begin: '·|͞|⃫|⍝'
     beginCaptures:
@@ -24,29 +27,25 @@ patterns: [
         name: 'comment.line.end.utfool'
     contentName: 'comment.line.utfool'
   }
+  # Expletive = WordComment
   {
     begin: '\\s*͘'
     beginCaptures:
       0:
-        name: 'comment.block.begin.utfool'
-    end: '\\s'
+        name: 'comment.word.begin.utfool'
+    end: '\\b'
     endCaptures:
       0:
-        name: 'comment.block.end.utfool'
-    contentName: 'comment.block.utfool'
+        name: 'comment.word.end.utfool'
+    contentName: 'comment.word.utfool'
   }
+  # Expletives in expletives.tsv
   {
     match: '\\b(be|each|let|the|them)\\b'
     name: 'comment.block.utfool'
   }
-  {
-    match: '\\\\[btnfru"]'
-    name: 'constant.character.escape.utfool'
-  }
-  {
-    match: "\\\\'"
-    name: 'constant.character.escape.utfool'
-  }
+  # Delimited Literals:
+  # Character Literal
   {
     begin: "'"
     beginCaptures:
@@ -57,6 +56,11 @@ patterns: [
       0:
         name: 'constant.character.end.utfool'
     contentName: 'constant.character.utfool'
+    patterns: [
+      {
+        include: '#escape'
+      }
+    ]
   }
   {
     begin: "‘"
@@ -68,6 +72,11 @@ patterns: [
       0:
         name: 'constant.character.end.utfool'
     contentName: 'constant.character.utfool'
+    patterns: [
+      {
+        include: '#escape'
+      }
+    ]
   }
   {
     begin: "‵"
@@ -79,7 +88,13 @@ patterns: [
       0:
         name: 'constant.character.end.utfool'
     contentName: 'constant.character.utfool'
+    patterns: [
+      {
+        include: '#escape'
+      }
+    ]
   }
+  # String Literal
   {
     begin: '"'
     beginCaptures:
@@ -91,6 +106,9 @@ patterns: [
         name: 'string.quoted.end.utfool'
     contentName: 'string.quoted.utfool'
     patterns: [
+      {
+        include: '#escape'
+      }
       {
         include: '#interpolation'
       }
@@ -108,6 +126,9 @@ patterns: [
     contentName: 'string.quoted.utfool'
     patterns: [
       {
+        include: '#escape'
+      }
+      {
         include: '#interpolation'
       }
     ]
@@ -124,10 +145,14 @@ patterns: [
     contentName: 'string.quoted.utfool'
     patterns: [
       {
+        include: '#escape'
+      }
+      {
         include: '#interpolation'
       }
     ]
   }
+  # Text Literal
   {
     begin: '‷'
     beginCaptures:
@@ -140,18 +165,36 @@ patterns: [
     contentName: 'string.quoted.utfool'
     patterns: [
       {
+        include: '#escape'
+      }
+      {
         include: '#interpolation'
       }
     ]
   }
+  # Type
   {
-    match: '⟨'
-    name: 'entity.name.type.begin.utfool'
+    match: '⦂\\s*\\w+'
+    name: 'entity.name.type.utfool'
   }
+  # TypeList
   {
-    match: '⟩'
-    name: 'entity.name.type.end.utfool'
+    begin: '⟨'
+    beginCaptures:
+      0:
+        name: 'entity.name.type.begin.utfool'
+    end: '⟩'
+    endCaptures:
+      0:
+        name: 'entity.name.type.end.utfool'
+    contentName: 'entity.name.type.utfool'
+    patterns: [
+      {
+        include: '#typelist'
+      }
+    ]
   }
+  # Expression
   {
     match: '\\('
     name: 'punctuation.bracket.round.begin.utfool'
@@ -160,6 +203,7 @@ patterns: [
     match: '\\)'
     name: 'punctuation.bracket.round.end.utfool'
   }
+  # Array
   {
     match: '\\['
     name: 'punctuation.bracket.square.begin.utfool'
@@ -168,32 +212,74 @@ patterns: [
     match: '\\]'
     name: 'punctuation.bracket.square.end.utfool'
   }
+  # Value References, a.k.a Reserved Names
   {
-    match: '\\b(break|by|catch|new|continue|else|fallthrough|finally)\\b'
+    match: "\\b(false|Infinity|NaN|null|off|true|yes)\\b"
+    name: 'constant.number.utfool'
+  }
+  # Keywords in keywords.tsv:
+  {
+    match: "\\b(array|as|assign|be|await|break|by|catch|class
+               |constants|constructor|new|continue|else
+               |fallthrough|finally|function|goto|if|case|when
+               |import|in|from|interface|iterate|repeat|loop|for
+               |label|of|package|parameter|return|section
+               |select|switch|check|then|throw|try|unless
+               |until|while|word wrap|yield)\\b"
     name: 'keyword.utfool'
   }
   {
-    match: '\\b(if|import|in|from|for|label|of|package|return)\\b'
+    match: '¤|⦂|:|←|≝|#|!⃝|■|≣|…|⋯|!!|‼|‼⃝|▶|\\?\\?|⁇|⬩|≟|⎆|∈|□
+           |🔁|∀|🏷|📦|⚫|⏺|⏎|§|∢|⭆|🌠|⏏|!⃤|⚠|﹗|﹖|↵'
     name: 'keyword.utfool'
   }
+  # Operators in operators.tsv:
   {
-    match: '\\b(section|then|throw|to|try|unless|until|while)\\b'
-    name: 'keyword.utfool'
+    match: '\\b(are|and|is|no|not|or|xor)\\b'
+    name: 'keyword.operator.utfool'
   }
   {
-    match: '¤|⦂|:|#|■|≣|…|⋯|!!|‼|▶|\\?\\?|⁇|⬩|⎆|∈|□|🔁|∀|🏷|📦'
-    name: 'keyword.utfool'
+    match: '°|◥|◢|⋆|◤|◣|\\*|∼|‐|¬|«•|•»|±»|«⮔|⮔»|&|\\||‖|\\^|×
+           |÷|/|\\\\|\\+|-|⊕|,|≡|≢|=|≠|<|≤|>|≥|∧|∨|⊻|⊼|⊽|\\?|!'
+    name: 'keyword.operator.utfool'
+  }
+  # Aliases in aliases.tsv
+  {
+    match: '\\b(to|up to|up through|down to|down through)\\b'
+    name: 'keyword.other.alias.utfool'
   }
   {
-    match: '⚫|⏺|⏎|§|∢|⭆|🌠|﹗|﹖|↵'
-    name: 'keyword.utfool'
+    match: '∅|∞|@|⨭|≈|≊|≅|∃|∄|⊨|⊭|√'
+    name: 'keyword.other.alias.utfool'
+  }
+  # Reserved Words in reserved_words_Java.tsv
+  {
+    match: '\\b(_|default|do|enum|extends|implements
+                 |instanceof|throws)\\b'
+    name: 'invalid.illegal.utfool'
+  }
+  # Numbers
+  {
+    match: '(0b[01]+|0o[0-7]+|0x[0-9A-Fa-f]+|0|[1-9]\\d*)'
+    name: 'constant.number.utfool'
   }
   {
-    match: '\\b(is|are)\\b'
-    name: 'entity.other.utfool'
+    match: '(0|[1-9]\\d*)(\\.\\d+)?([Ee⏨][+-]?\\d+)?'
+    name: 'constant.number.utfool'
   }
 ]
 repository:
+  escape:
+    patterns: [
+      {
+        match: '\\\\[btnfru"]'
+        name: 'constant.character.escape.utfool'
+      }
+      {
+        match: "\\\\'"
+        name: 'constant.character.escape.utfool'
+      }
+    ]
   interpolation:
     patterns: [
       {
@@ -203,5 +289,19 @@ repository:
       {
         match: '⸩'
         name: 'entity.other.attribute-name'
+      }
+    ]
+  typelist:
+    patterns: [
+      {
+        begin: '⟨'
+        beginCaptures:
+          0:
+            name: 'entity.name.type.begin.utfool'
+        end: '⟩'
+        endCaptures:
+          0:
+            name: 'entity.name.type.end.utfool'
+        contentName: 'entity.name.type.utfool'
       }
     ]
