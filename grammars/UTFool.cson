@@ -284,11 +284,11 @@ repository:
     patterns: [
       {
         match: '⸨'
-        name: 'entity.other.attribute-name'
+        name: 'entity.other.attribute-name.utfool'
       }
       {
         match: '⸩'
-        name: 'entity.other.attribute-name'
+        name: 'entity.other.attribute-name.utfool'
       }
     ]
   typelist:
