@@ -5,7 +5,7 @@ import java.util.HashSet
 
 ■ Dinesman
   § static
-  
+
     houses⦂ HashSet⟨String⟩°
 
     ▶ main

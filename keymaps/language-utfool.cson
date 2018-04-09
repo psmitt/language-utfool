@@ -7,5 +7,10 @@
 
 # For more detailed documentation see
 # https://atom.io/docs/latest/behind-atom-keymaps-in-depth
-'atom-workspace':
-  'ctrl-alt-o': 'language-utfool:toggle'
+
+"atom-text-editor[data-grammar='source utfool']":
+  'alt-_': 'utfool:insert-StartOfLineCommentDoubleMacron'
+  'alt-/': 'utfool:insert-StartOfLineCommentDoubleSolidus'
+  'alt-.': 'utfool:insert-StartOfLineCommentMiddleDot'
+  'alt-í': 'utfool:insert-StartOfTypeList'
+  'alt-y': 'utfool:insert-EndOfTypeList'
