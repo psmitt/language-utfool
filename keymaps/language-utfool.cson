@@ -1,16 +1,49 @@
 # Keybindings require three things to be fully defined: A selector that is
 # matched against the focused element, the keystroke and the command to
 # execute.
-#
-# Below is a basic keybinding which registers on all platforms by applying to
-# the root workspace element.
-
-# For more detailed documentation see
-# https://atom.io/docs/latest/behind-atom-keymaps-in-depth
 
 "atom-text-editor[data-grammar='source utfool']":
+  'alt-shift-+': 'utfool:insert-Append'
+  'alt-:': 'utfool:insert-As'
+  'ctrl-í': 'utfool:insert-Case'
+  'alt-C': 'utfool:insert-Class'
+  'alt-+': 'utfool:insert-Concatenation'
+  'cmd--': 'utfool:insert-Constants'
+  'alt-é': 'utfool:insert-ElementOf'
+  'alt-ü': 'utfool:insert-Ellipsis'
+  'alt-Ü': 'utfool:insert-EllipsisMiddle'
+  'alt-g': 'utfool:insert-EndOfEmbeddedCode'
+  'alt-)': 'utfool:insert-EndOfInterpolation'
+  'alt-y': 'utfool:insert-EndOfTypeList'
+  'alt-1': 'utfool:insert-EssentiallyEquals'
+  'alt-! 4': 'utfool:insert-EXEX'
+  'alt-E': 'utfool:insert-Exists'
+  'alt-! ,': 'utfool:insert-EXQ'
+  'alt-A': 'utfool:insert-ForAll'
+  'alt-F': 'utfool:insert-Function'
+  'alt-0 í': 'utfool:insert-GreaterEqual'
+  'alt-8': 'utfool:insert-Infinity'
+  'alt-I': 'utfool:insert-Interface'
+  'ctrl-?': 'utfool:insert-Iteration'
+  'alt-L': 'utfool:insert-Label'
+  'alt-0 y': 'utfool:insert-LessEqual'
+  'alt--': 'utfool:insert-Minus'
+  'alt-0 0': 'utfool:insert-Not'
+  'alt-0 7': 'utfool:insert-NotEqual'
+  'alt-0 e': 'utfool:insert-NotExist'
+  'alt-O': 'utfool:insert-Null'
+  'alt-P': 'utfool:insert-Parameter'
+  'alt-down': 'utfool:insert-PreDecrement'
+  'alt-up': 'utfool:insert-PreIncrement'
+  'alt-shift-down': 'utfool:insert-PostDecrement'
+  'alt-shift-up': 'utfool:insert-PostIncrement'
+  'alt-? 4': 'utfool:insert-QEX'
+  'alt-? ,': 'utfool:insert-QQ'
+  'ctrl-Í': 'utfool:insert-Select'
+  'alt-f': 'utfool:insert-StartOfEmbeddedCode'
+  'alt-(': 'utfool:insert-StartOfInterpolation'
   'alt-_': 'utfool:insert-StartOfLineCommentDoubleMacron'
   'alt-/': 'utfool:insert-StartOfLineCommentDoubleSolidus'
   'alt-.': 'utfool:insert-StartOfLineCommentMiddleDot'
   'alt-í': 'utfool:insert-StartOfTypeList'
-  'alt-y': 'utfool:insert-EndOfTypeList'
+  'alt-shift-enter': 'utfool:insert-WordWrap'

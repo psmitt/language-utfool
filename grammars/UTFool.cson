@@ -3,6 +3,15 @@ name: 'UTFool'
 fileTypes: ['utf8']
 patterns: [
   # Delimited Sequences:
+  # Embedded Code
+  {
+    match: '⟦'
+    name: 'meta.embedded.block.begin.utfool'
+  }
+  {
+    match: '⟧'
+    name: 'meta.embedded.block.end.utfool'
+  }
   # BlockComment
   {
     begin: '···'
